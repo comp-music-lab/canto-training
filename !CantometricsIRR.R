@@ -36,7 +36,7 @@ d[ ][ d[ ] == "Very Low" ] <- 13
 normalize = function(x, ...) {(x - min(x, ...)) / (max(x, ...) - min(x, ...))}
 d[,3:8] <- lapply(d[3:8], normalize,na.rm=TRUE)
 
-#Test pairwise reliability vs "correct" answer (column number 3). Test case: Yuchen (column number 5)
+#Calculate pairwise reliability vs "correct" answer (column number 3). Test case: Yuchen (column number 5)
 d[,c(3,5)] #show columns 3 and 5
 table(d[,c(3,5)]) #show contingency table 
 agree(d[,c(3,5)]) #calculate percent agreement
@@ -44,7 +44,7 @@ agree(d[,c(3,5)],tolerance=0.25) #calculate percent agreement with tolerance of 
 psych::cohen.kappa(d[,c(3,5)]) #Calculate Cohen's Kappa (both unweighted and weighted [squared weighting by default])
 psych::alpha(d[,c(3,5)]) #Calculate Cronbach's alpha
 
-#Test average reliability across all raters (columns number 3-8).
+#Calculate average reliability across all raters (columns number 3-8).
 agree(d[,3:8]) # percent agreement across all 6 raters = 33% (NB: this means ALL 6 raters agree for 3/9 songs)
 agree(d[,3:8],tolerance=.25) # percent agreement across all 6 raters with tolerance of 1 scale point = 100% (NB: this means ALL 6 raters are within 1 point for all songs)
 psych::cohen.kappa(d[,3:8]) #Calculate Light's Kappa (i.e., average of all pairwise Cohen's Kappas) (both unweighted and weighted [squared weighting by default])
